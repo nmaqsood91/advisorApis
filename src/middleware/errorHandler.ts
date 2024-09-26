@@ -4,14 +4,26 @@ import { ApiError } from "../util/apiError";
 import { StatusCodes } from "http-status-codes";
 import { logger } from "../util";
 
+const ERROR_MESSAGES = {
+  INTERNAL_SERVER_ERROR: "Internal Server Error",
+  VALIDATION_ERROR: "Validation error",
+};
+
 export function errorHandler(
   err: Error,
   req: Request,
   res: Response,
   next: NextFunction
 ) {
-  logger.error("Error occurred:", err);
+  logger.error("Error occurred:", {
+    message: err.message,
+    stack: process.env.NODE_ENV === "development" ? err.stack : undefined,
+    path: req.path,
+    method: req.method,
+    body: req.body,
+  });
 
+  // Handle custom API errors
   if (err instanceof ApiError) {
     return res.status(err.statusCode).json({
       statusCode: err.statusCode,
@@ -19,20 +31,21 @@ export function errorHandler(
     });
   }
 
+  // Handle Sequelize unique constraint errors
   if (err instanceof UniqueConstraintError) {
-    // Handling Sequelize unique constraint error
-    return res.status(400).json({
+    return res.status(StatusCodes.CONFLICT).json({
       status: "error",
-      message: "Validation error",
-      errors: err?.errors?.map(err => ({
-        message: err.message,
-        value: err.value,
+      message: ERROR_MESSAGES.VALIDATION_ERROR,
+      errors: err.errors.map(error => ({
+        message: error.message,
+        value: error.value,
       })),
     });
   }
-  // for all the general errors
+
+  // Handle any other errors
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-    message: "Internal Server Error",
+    message: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
   });
 }
