@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "b57e69e4-3965-4836-9ec1-87d88746106e",
+		"name": "Advisor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6618185"
+	},
+	"item": [
+		{
+			"name": "Register Advisor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"advisor\",\n    \"password\": \"advisor\",\n    \"email\": \"advisor@nn.nl\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/advisor/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"advisor",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Advisor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"advisor\",\n    \"email\": \"advisor@nn.nl\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/advisor/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"advisor",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Advisor Products",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZHZpc29ySWQiOjEzLCJpYXQiOjE3MjczMDExNzQsImV4cCI6MTcyNzMwMTc3NH0.71eXEds4_ewKHrKtENkBq8o50wmYQFstZG0kRO-89zc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Insurance 2.0\",\n    \"price\": 1.0,\n    \"description\": \"it is a product\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Advisor Products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZHZpc29ySWQiOjEzLCJpYXQiOjE3MjczMDExNzQsImV4cCI6MTcyNzMwMTc3NH0.71eXEds4_ewKHrKtENkBq8o50wmYQFstZG0kRO-89zc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Insurance\",\n    \"price\": 1.0,\n    \"description\": \"it is a product\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Advisor Product  By Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZHZpc29ySWQiOjEzLCJpYXQiOjE3MjczMDExNzQsImV4cCI6MTcyNzMwMTc3NH0.71eXEds4_ewKHrKtENkBq8o50wmYQFstZG0kRO-89zc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Insurance\",\n    \"price\": 1.0,\n    \"description\": \"it is a product\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/products/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"products",
+						"17"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
