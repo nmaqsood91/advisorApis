@@ -24,13 +24,13 @@ export function errorHandler(
     return res.status(400).json({
       status: "error",
       message: "Validation error",
-      errors: err.errors.map(err => ({
+      errors: err?.errors?.map(err => ({
         message: err.message,
         value: err.value,
       })),
     });
   }
-
+  // for all the general errors
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
     message: "Internal Server Error",
